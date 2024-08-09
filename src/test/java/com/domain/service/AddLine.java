@@ -13,6 +13,8 @@ import com.domain.StatusName;
 import com.domain.Tax;
 public class AddLine {
 	public OrderMLMU addLine(OrderMLMU ordermlmu) {
+		CreateMLMUOLService cl= new CreateMLMUOLService();
+		OrderMLMU order=cl.createOrderMLMUQtys();
 		List<OrderLineStatus> orderLineStatuses =new ArrayList<OrderLineStatus>();
 		OrderLineStatus oLS =new OrderLineStatus(StatusName.CREATED, 1
 				,LocalDate.parse("2024-08-07"));
@@ -22,10 +24,7 @@ public class AddLine {
 		OrderLineMLMU oLMLMU=
 		new OrderLineMLMU(3,1002,102,"Charger",
 				BigDecimal.valueOf(449.0),1,discount,tax,orderLineStatuses);
-		List<OrderLineMLMU> ol = new ArrayList<>();
-		ol.add(oLMLMU);
-		OrderLinesMLMU orderLine =new OrderLinesMLMU(ol);
-		OrderMLMU order = new OrderMLMU(234, orderLine);
+		order.getOrderLines().getListOrderLines().add(oLMLMU);
 		return order;
 	}
 }
