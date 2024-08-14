@@ -24,7 +24,7 @@ public class TestAddNewLine {
 	@When("The order should have one more line added")
 	public void the_order_should_have_one_more_line_added() {
 		 OrderLinesMLMU orderLines = order.getOrderLines();
-		int expectedLineCount =3;
+		int expectedLineCount=3;
 		assertEquals(expectedLineCount,orderLines.getListOrderLines().size());
 	}
 }

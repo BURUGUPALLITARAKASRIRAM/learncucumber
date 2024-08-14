@@ -12,9 +12,8 @@ import com.domain.OrderMLMU;
 import com.domain.StatusName;
 import com.domain.Tax;
 public class AddLine {
-	public OrderMLMU addLine(OrderMLMU ordermlmu) {
-		
-		List<OrderLineStatus> orderLineStatuses =new ArrayList<OrderLineStatus>();
+	public OrderMLMU addLine(OrderMLMU ordermlmu) {	
+		List<OrderLineStatus> orderLineStatuses = new ArrayList<OrderLineStatus>();
 		OrderLineStatus oLS =new OrderLineStatus(StatusName.CREATED, 1
 				,LocalDate.parse("2024-08-07"));
 		orderLineStatuses.add(oLS);

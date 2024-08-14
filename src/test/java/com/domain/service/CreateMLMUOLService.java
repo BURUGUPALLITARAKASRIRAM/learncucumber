@@ -29,7 +29,7 @@ public class CreateMLMUOLService{
 			,BigDecimal.valueOf(100.0),3,discount1,tax1, orderLineStatuses1);
 
 	
-	Tax tax2 = new Tax("Sales tax",BigDecimal.valueOf(5.33));
+	Tax tax2 = new Tax("Sales tax",BigDecimal.valueOf(7.65));
 	Discount discount2 = new Discount("offer", "product",BigDecimal.valueOf(9.3));
 	OrderLineMLMU orderLine2 = new OrderLineMLMU(2,1001,101,"Markers"
 			,BigDecimal.valueOf(1000.0),2,discount2,tax2,orderLineStatuses2);

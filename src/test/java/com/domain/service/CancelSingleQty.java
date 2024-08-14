@@ -10,7 +10,6 @@ public class CancelSingleQty {
 	public void cancelSingleQty(OrderMLMU order,int primeLineNo, 
 			int qty) 
 	{
-		
 		OrderLineMLMU existingLine=order.getOrderLines().getListOrderLines()
 		.stream().filter(s ->(s.getPrimeLineNo()== primeLineNo))
 		.findFirst().get();
@@ -19,8 +18,6 @@ public class CancelSingleQty {
 		existingLine.getOrderLineStatus().stream()
 		.filter(s-> s.getStatusName()==StatusName.CREATED)
 		.forEach(s -> s.setQty(s.getQty()-qty));
-		
-		
 		
 		OrderLineStatus newCancelStatus= new OrderLineStatus(StatusName.CANCELLED,qty,LocalDate.now());
 		existingLine.getOrderLineStatus().add(newCancelStatus);

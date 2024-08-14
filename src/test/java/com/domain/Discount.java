@@ -1,7 +1,5 @@
 package com.domain;
-
 import java.math.BigDecimal;
-
 public class Discount {
 	String discountType;
 	String discountName;
