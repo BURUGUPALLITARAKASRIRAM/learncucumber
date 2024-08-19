@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 public class SplitLineService {
     // Method to split an order line and adjust quantities
-    public void splitLine(OrderLineMLMU orderLine, int primeLineNo, int splitQty) {
-        if (orderLine == null || splitQty <= 0 || splitQty >= orderLine.getQty()) {
+    public void splitLine(OrderLineMLMU orderLine, int primeLineNo, int qty) {
+        if (orderLine == null || qty <= 0 || qty >= orderLine.getQty()) {
             throw new IllegalArgumentException("Invalid order line or split quantity.");
         }
         // Adjust the original line quantity
-        int remainingQty = orderLine.getQty() - splitQty;
+        int remainingQty = orderLine.getQty() - qty;
         orderLine.setQty(remainingQty);
         // Create a new order line for the split quantity
         OrderLineMLMU splitOrderLine = new OrderLineMLMU(
@@ -21,12 +21,12 @@ public class SplitLineService {
             orderLine.getOrderNumber(),
             orderLine.getItemDescription(),
             orderLine.getUnitPrice(),
-            splitQty,
+            qty,
             orderLine.getDiscount(),
             orderLine.getTax(),
             new ArrayList<>()
         );
-        OrderLineStatus splitStatus = new OrderLineStatus(StatusName.SPLIT, splitQty, LocalDate.now());
+        OrderLineStatus splitStatus = new OrderLineStatus(StatusName.SPLIT, qty, LocalDate.now());
         splitOrderLine.getOrderLineStatus().add(splitStatus);
     }
 }

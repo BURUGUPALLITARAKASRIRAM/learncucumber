@@ -56,4 +56,24 @@ public class ChangeLineStatusService {
 	            }
 	        }
 	    }
+	  public void cancelQuantity(OrderLineMLMU orderLine, int cancelQty) {
+	        if (orderLine == null || cancelQty <= 0) {
+	            throw new IllegalArgumentException
+	            ("Invalid order line or cancellation quantity.");
+	        }
+	        int currentQty = orderLine.getQty();
+	        if (cancelQty > currentQty) {
+	            throw new IllegalArgumentException
+	            ("Cancellation quantity exceeds current quantity.");
+	        }
+	        int newQty = currentQty - cancelQty;
+	        orderLine.setQty(newQty);
+
+	        OrderLineStatus status = orderLine.getOrderLineStatus().isEmpty() ?
+	            new OrderLineStatus(StatusName.CANCELLED, cancelQty, LocalDate.now()) :
+	            orderLine.getOrderLineStatus().get(0);
+
+	        status.setQty(status.getQty() + cancelQty); // update status quantity to reflect total canceled
+	        status.setStatusName(StatusName.CANCELLED); // set status to cancelled
+	    }
 	}
